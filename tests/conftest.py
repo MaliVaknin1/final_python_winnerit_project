@@ -7,7 +7,10 @@ from pages.checkout_page import CheckoutPage
 from pages.products_page import ProductsPage
 from pages.login_page import LoginPage
 from utils.configs import BASE_UI_URL
+from  faker import  Faker
 
+
+fake=Faker()
 
 #fixture to all useful pages.
 @pytest.fixture
@@ -34,3 +37,12 @@ def cart_page(page: Page):
 @pytest.fixture(scope="session")
 def base_ui_url():
     return BASE_UI_URL
+
+#fixture to generate random first name, last name and zip code
+@pytest.fixture
+def random_checkout_user_data(scope="session"):
+    return {
+        "first_name": fake.first_name(),
+        "last_name": fake.last_name(),
+        "zip_code": fake.zipcode()
+    }

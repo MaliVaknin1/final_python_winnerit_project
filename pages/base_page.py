@@ -25,11 +25,18 @@ class BasePage:
     def fill_in_field_sequentialy(self, field: Locator, txt: str):
         field.press_sequentially(txt, delay= 200)
 
+    #general method to validate the url of page
     def validate_page_url(self, expected_url:str):
         expect(self.__page).to_have_url(expected_url)
 
+    #general method to validate that the element has specific text
     def validate_element_has_txt(self, element:Locator, txt: str):
         expect(element).to_have_text(txt)
 
+    #general method t validate that element is visible in the page
     def validate_element_is_visible(self, element: Locator):
         expect(element).to_be_visible()
+
+    #general method to validate that specific text isn't populated in the field.
+    def validate_field_not_has_value(self, field: Locator, txt: str):
+        expect(field).not_to_have_values(txt)
