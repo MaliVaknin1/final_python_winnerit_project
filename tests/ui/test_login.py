@@ -1,9 +1,5 @@
-from symtable import Class
-
 import pytest
-from playwright.sync_api import Page
 
-from utils import configs
 from utils.configs import PASSWORD, DATA
 
 

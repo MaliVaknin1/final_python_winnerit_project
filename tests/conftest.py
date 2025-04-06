@@ -6,7 +6,7 @@ from pages.cart_page import CartPage
 from pages.checkout_page import CheckoutPage
 from pages.products_page import ProductsPage
 from pages.login_page import LoginPage
-from utils.configs import BASE_UI_URL
+from utils.configs import BASE_UI_URL, BASE_API_URL
 from faker import Faker
 
 fake = Faker()
@@ -38,11 +38,15 @@ def cart_page(page: Page):
     return CartPage(page)
 
 
-# fixture to useful url
+# fixture to useful ui url
 @pytest.fixture(scope="session")
 def base_ui_url():
     return BASE_UI_URL
 
+# fixture to useful api url
+@pytest.fixture(scope="session")
+def base_api_url():
+    return BASE_API_URL
 
 # fixture to generate random first name, last name and zip code
 @pytest.fixture
@@ -50,5 +54,5 @@ def random_checkout_user_data(scope="session"):
     return {
         "first_name": fake.first_name(),
         "last_name": fake.last_name(),
-        "zip_code": fake.zipcode()
+        "zip_code": fake.zipcode
     }
