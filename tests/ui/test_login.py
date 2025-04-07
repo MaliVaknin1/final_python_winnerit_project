@@ -1,11 +1,11 @@
 import pytest
 
-from utils.configs import PASSWORD, DATA
+from utils.configs import PASSWORD, USER_NAME_DATA
 
 
 # Go to sauce.com, test login function for 4 users.
 # the users are saved in configs file. and verify user is navigated to product page.
-@pytest.mark.parametrize("username", DATA)
+@pytest.mark.parametrize("username", USER_NAME_DATA)
 def test_success_login(login_page, base_ui_url, base_page, username):
     base_page.navigate_to(base_ui_url)
     login_page.validate_success_login(username=username, passwords=PASSWORD)
