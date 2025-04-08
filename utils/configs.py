@@ -66,3 +66,32 @@ UNSUCCESSFUL_REGISTER_DATA = {
     "email": "sydney@fife",
     "expected_error": "Missing password"
 }
+
+RESOURCES_DATA = {
+    "expected_page": 1,
+    "expected_per_page": 6,
+    "expected_total": 12,
+    "expected_total_pages": 2,
+    "expected_first_resource": {
+        "id": 1,
+        "name": "cerulean",
+        "year": 2000,
+        "color": "#98B2D1",
+        "pantone_value": "15-4020"
+    }
+}
+
+SINGLE_RESOURCE_DATA = {
+    "resource_id": 2,
+    "expected_resource": {
+        "id": 2,
+        "name": "fuchsia rose",
+        "year": 2001,
+        "color": "#C74375",
+        "pantone_value": "17-2031"
+    }
+}
+
+NON_EXISTENT_RESOURCE_DATA = {
+    "resource_id": 23
+}
