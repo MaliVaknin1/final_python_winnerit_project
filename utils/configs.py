@@ -41,4 +41,28 @@ MISSING_PASSWORD_DATA = {
     "expected_error": "Missing password"
 }
 
+DELAYED_RESPONSE_DATA = {
+    "delay": 3,
+    "expected_per_page": 6,
+    "expected_total": 12,
+    "expected_total_pages": 2,
+    "expected_first_user": {
+        "id": 1,
+        "email": "george.bluth@reqres.in",
+        "first_name": "George",
+        "last_name": "Bluth",
+        "avatar": "https://reqres.in/img/faces/1-image.jpg"
+    }
+}
 
+REGISTER_DATA = {
+    "email": "eve.holt@reqres.in",
+    "password": "pistol",
+    "expected_id": 4,
+    "expected_token": "QpwL5tke4Pnpja7X4"
+}
+
+UNSUCCESSFUL_REGISTER_DATA = {
+    "email": "sydney@fife",
+    "expected_error": "Missing password"
+}

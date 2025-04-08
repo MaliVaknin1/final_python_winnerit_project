@@ -11,6 +11,11 @@ class UsersApi:
     def get_users(self, page: int):
         response = requests.get(f"{self.base_url}/users", params={"page": page})
         return response
+
+    def get_users_with_delay(self, delay: int):
+        response = requests.get(f"{self.base_url}/users", params={"delay": delay})
+        return response
+
 #function to get user by ID- get call
     def get_user_by_id(self, user_id: int):
         response = requests.get(f"{self.base_url}/users/{user_id}")

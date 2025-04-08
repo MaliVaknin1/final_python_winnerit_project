@@ -1,7 +1,7 @@
 import pytest
 from assertpy import assert_that
 from api_requests.users_api import UsersApi
-from utils.configs import USER_API_PARAMS, REQUIRED_KEYS, CREATE_USER_DATA, UPDATE_USER_DATA
+from utils.configs import USER_API_PARAMS, REQUIRED_KEYS, CREATE_USER_DATA, UPDATE_USER_DATA, DELAYED_RESPONSE_DATA
 from utils.helpers import validate_json_structure
 
 #Get JSON file and validate data-id and email are exist.
@@ -56,5 +56,23 @@ def test_delete_user():
     users_api = UsersApi()
     response = users_api.delete_user()
     assert response.status_code == 204, f"Unexpected status code: {response.status_code}"
+
+#Get users with delay and validate response structure and data
+def test_get_users_with_delay():
+    users_api = UsersApi()
+    response = users_api.get_users_with_delay(delay=DELAYED_RESPONSE_DATA["delay"])
+    assert response.status_code == 200, f"Unexpected status code: {response.status_code}"
+    response_json = response.json()
+    assert "data" in response_json
+    assert response_json["per_page"] == DELAYED_RESPONSE_DATA["expected_per_page"]
+    assert response_json["total"] == DELAYED_RESPONSE_DATA["expected_total"]
+    assert response_json["total_pages"] == DELAYED_RESPONSE_DATA["expected_total_pages"]
+    first_user = response_json["data"][0]
+    expected_user = DELAYED_RESPONSE_DATA["expected_first_user"]
+    assert first_user["id"] == expected_user["id"]
+    assert first_user["email"] == expected_user["email"]
+    assert first_user["first_name"] == expected_user["first_name"]
+    assert first_user["last_name"] == expected_user["last_name"]
+    assert first_user["avatar"] == expected_user["avatar"]
 
 
