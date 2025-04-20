@@ -1,3 +1,4 @@
+import allure
 import pytest
 
 from utils.configs import PASSWORD, USER_NAME_DATA
@@ -13,6 +14,8 @@ def test_success_login(login_page, base_ui_url, base_page, username):
 
 # Go to sauce.com, test fail login without insert password
 # and verify property error message is displayed.
+@allure.feature("Login")
+@allure.story("Negative login")
 def test_login_without_password_display_error(login_page, base_ui_url, base_page):
     base_page.navigate_to(base_ui_url)
     login_page.fail_login_without_password()

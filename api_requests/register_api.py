@@ -1,3 +1,4 @@
+import allure
 import requests
 from utils.configs import BASE_API_URL
 
@@ -7,8 +8,9 @@ class RegisterApi:
         
 #Function to register with email and password
     def register(self, email: str, password: str):
-        response = requests.post(
-            f"{self.base_url}/register",
-            json={"email": email, "password": password}
-        )
-        return response
+        with allure.step(f"Registration by api request"):
+            response = requests.post(
+                f"{self.base_url}/register",
+                json={"email": email, "password": password}
+            )
+            return response

@@ -1,3 +1,5 @@
+import allure
+
 from tests.conftest import random_checkout_user_data
 from utils import configs
 

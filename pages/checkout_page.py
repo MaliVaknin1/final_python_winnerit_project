@@ -1,3 +1,4 @@
+import allure
 from playwright.sync_api import Page
 
 from pages.base_page import BasePage
@@ -20,27 +21,31 @@ class CheckoutPage(BasePage):
 
     # Fill in first name ,last name and zip code fields and validate the fields aren't empty
     def validate_checkout_textfield(self, first_name: str, last_name: str, zip_code: str):
-        self.fill_in_field(self.__first_name_textfield, first_name)
-        self.fill_in_field(self.__last_name_textfield, last_name)
-        self.fill_in_field(self.__zip_code_textfield, zip_code)
-        self.validate_field_not_has_value(self.__first_name_textfield, "")
-        self.validate_field_not_has_value(self.__last_name_textfield, "")
-        self.validate_field_not_has_value(self.__zip_code_textfield, "")
+        with allure.step(f"validating the fields are populated"):
+            self.fill_in_field(self.__first_name_textfield, first_name)
+            self.fill_in_field(self.__last_name_textfield, last_name)
+            self.fill_in_field(self.__zip_code_textfield, zip_code)
+            self.validate_field_not_has_value(self.__first_name_textfield, "")
+            self.validate_field_not_has_value(self.__last_name_textfield, "")
+            self.validate_field_not_has_value(self.__zip_code_textfield, "")
 
     # Click on continue btn and validate user is navigated to overview page
     def validate_second_checkout_flow(self):
-        self.click_on_button(self.__continue_btn)
-        self.validate_page_url(URL.OVERVIEW_CHECKOUT_PAGE_URL.get_url())
+        with allure.step(f"validating clicking on continue button is navigating to page:{URL.OVERVIEW_CHECKOUT_PAGE_URL.get_url()}"):
+            self.click_on_button(self.__continue_btn)
+            self.validate_page_url(URL.OVERVIEW_CHECKOUT_PAGE_URL.get_url())
 
     # Click on finish button in overview page and verify: -user is navigated to approval page, -Back Home page
     # button is displayed, -"Thank you for your order " text is displayed
     def validate_confirmation_page_of_checkout(self):
-        self.click_on_button(self.__finish_btn)
-        self.validate_page_url(URL.CHECKOUT_COMPLETE_PAGE_URL.get_url())
-        self.validate_element_is_visible(self.__back_home_btn)
-        self.validate_element_has_txt(self.__confirmation_header, "Thank you for your order!")
+        with allure.step(f"validating clicking on finish button is navigating to page:{URL.CHECKOUT_COMPLETE_PAGE_URL.get_url()}"):
+            self.click_on_button(self.__finish_btn)
+            self.validate_page_url(URL.CHECKOUT_COMPLETE_PAGE_URL.get_url())
+            self.validate_element_is_visible(self.__back_home_btn)
+            self.validate_element_has_txt(self.__confirmation_header, "Thank you for your order!")
 
     # Click on Cancel button and verify user is navigated to cart page
     def cancel_checkout_and_verify_navigation(self):
-        self.click_on_button(self.__cancel_btn)
-        self.validate_page_url(URL.CART_PAGE_URL.get_url())
+        with allure.step(f"validating clicking on cancel button is navigating to page:{URL.CART_PAGE_URL.get_url()}"):
+            self.click_on_button(self.__cancel_btn)
+            self.validate_page_url(URL.CART_PAGE_URL.get_url())
