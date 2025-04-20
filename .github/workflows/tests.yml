@@ -33,11 +33,12 @@ jobs:
     - name: Run Tests with Allure
       run: pytest -v --screenshot=on --browser=firefox --alluredir=allure-results
 
-    - uses: actions/upload-artifact@v3
+    - name: Upload Test Results
+      uses: actions/upload-artifact@v4
       if: always()
       with:
-        name: test-results
-        path: test-results/
+        name: allure-results
+        path: allure-results/
         retention-days: 30
 
     - name: Get Allure history
@@ -62,4 +63,4 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_branch: gh-pages
-        publish_dir: allure-history
+        publish_dir: allure-report
