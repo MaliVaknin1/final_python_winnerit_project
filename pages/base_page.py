@@ -12,7 +12,7 @@ class BasePage:
 
     # general method of clicking button
     def click_on_button(self, btn: Locator):
-        with allure.step(f"Clicking on the button: {btn}"):
+        with allure.step(f"Clicking on a button"):
             btn.click()
 
     # general method of navigation url
