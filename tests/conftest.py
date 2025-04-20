@@ -50,9 +50,9 @@ def base_api_url():
 
 # fixture to generate random first name, last name and zip code
 @pytest.fixture
-def random_checkout_user_data(scope="session"):
+def random_checkout_user_data():
     return {
         "first_name": fake.first_name(),
         "last_name": fake.last_name(),
-        "zip_code": fake.zipcode
+        "zip_code": fake.zipcode()
     }
